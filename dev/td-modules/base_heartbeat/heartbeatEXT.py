@@ -82,7 +82,8 @@ class Heartbeat:
 				"hostname"		: op(self.ComCOMP).Hostname,
 				"ip_address" 	: op(self.ComCOMP).Ipaddress,
 				"fps"			: self.Perform_chop['fps'][0],
-				"perform_mode"	: ui.performMode
+				"perform_mode"	: ui.performMode,
+				"uptime"		: absTime.seconds
 			}
 		}
 
