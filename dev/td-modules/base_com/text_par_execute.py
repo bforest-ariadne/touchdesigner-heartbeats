@@ -7,7 +7,7 @@
 
 def onValueChange(par, prev):
 	if par.name == 'Heartbeatrole':
-		parent().Role_setup(par)	
+		parent().RoleSetup(par)	
 		
 	else:
 		pass

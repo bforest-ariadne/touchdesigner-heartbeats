@@ -9,3 +9,6 @@ get-pip.py
 
 # mac files
 *.DS_STORE
+
+Backup/
+dev-env.*.toe
