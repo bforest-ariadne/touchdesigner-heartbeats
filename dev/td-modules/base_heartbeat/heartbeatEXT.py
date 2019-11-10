@@ -85,7 +85,7 @@ class Heartbeat:
 				"ip_address" 	: op(self.ComCOMP).Ipaddress,
 				"fps"			: self.Perform_chop['fps'][0],
 				"perform_mode"	: ui.performMode,
-				"uptime"		: absTime.seconds,
+				"uptime"		: int(absTime.seconds),
 				"project_name"	: project.name
 			}
 		}
@@ -97,7 +97,7 @@ class Heartbeat:
 	def Hb_response(self, msg):
 		Controller 			= 1 if self.HeartbeatRole.eval() == 'controller' else 0
 		received_vals 		= msg.get("value")
-		received_vals.update({'received_time': absTime.seconds})
+		received_vals.update({'received_time': int(absTime.seconds)})
 		received_vals.update({'alive': 0})
 		if Controller:
 			for msg_keys, msg_vals in received_vals.items():
@@ -115,7 +115,7 @@ class Heartbeat:
 			if received_time is not None:
 				received_time = received_time.val
 				if received_time != '':
-					received_time = math.ceil(float(received_time))
+					received_time = int(received_time)
 					if absTime.seconds - received_time < 5:
 						alive = 1
 			self.Status_table[each_machine.val, 'alive'] = alive
