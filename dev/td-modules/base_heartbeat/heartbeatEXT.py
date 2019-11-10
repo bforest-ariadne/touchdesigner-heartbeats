@@ -25,7 +25,7 @@ class Heartbeat:
 		self.Status_table 		= op('table_status')
 		self.Perform_chop 		= op('perform1')
 
-		self.Status_headers 	= ["hostname", "ip_address", "fps", "perform_mode", 'uptime', 'received_time', 'alive', 'project_name']
+		self.Status_headers 	= ["hostname", 'alive', "ip_address", "fps", "perform_mode", 'uptime', 'received_time', 'project_name']
 		self.Status_setup()
 
 		print("Heartbeat init")
@@ -67,6 +67,8 @@ class Heartbeat:
 				}
 
 			op(self.ComCOMP).Send_msg(msg)
+
+			self.checkStatusTableAlive()
 		else:
 			pass
 		pass
@@ -101,12 +103,12 @@ class Heartbeat:
 			for msg_keys, msg_vals in received_vals.items():
 				target_row 	= received_vals.get("hostname")
 				self.Status_table[target_row, msg_keys] = msg_vals
-			self.CheckStatusTableAlive()
+			self.checkStatusTableAlive()
 		else:
 			pass
 		pass
 
-	def CheckStatusTableAlive(self):
+	def checkStatusTableAlive(self):
 		alive = 0
 		for each_machine in self.Status_table.cols(0)[0][1:]:
 			received_time = math.ceil(float(self.Status_table[each_machine.val, 'received_time'].val))
