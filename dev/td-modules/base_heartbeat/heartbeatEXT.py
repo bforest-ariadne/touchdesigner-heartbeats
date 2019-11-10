@@ -66,7 +66,7 @@ class Heartbeat:
 				'value'			: None
 				}
 
-			op(self.ComCOMP).Send_msg(msg)
+			op(self.ComCOMP).SendMsg(msg)
 
 			self.checkStatusTableAlive()
 		else:
@@ -90,7 +90,7 @@ class Heartbeat:
 			}
 		}
 
-		op(self.ComCOMP).Send_msg(out_msg)
+		op(self.ComCOMP).SendMsg(out_msg)
 
 		pass
 

@@ -23,11 +23,11 @@ class Com:
 		self.Udp_in 		= op('udpin1')
 		self.Hostname 		= None
 		self.Ipaddress 		= None
-		self.Get_set_network()
+		self.GetSetNetwork()
 		print("Com init")
 		pass
 
-	def Get_set_network(self):
+	def GetSetNetwork(self):
 
 		self.Hostname 			= socket.gethostname()
 		self.Ipaddress			= socket.gethostbyname(self.Hostname)
@@ -37,7 +37,7 @@ class Com:
 		pass
 
 
-	def Role_setup(self, role_par):
+	def RoleSetup(self, role_par):
 		if role_par == "node":
 			op('lfo1').bypass = True
 			pass
@@ -47,7 +47,7 @@ class Com:
 		pass
 
 
-	def Send_msg(self, pyobject):
+	def SendMsg(self, pyobject):
 		'''
 		message = {
 			'messagekind'	: ,
@@ -80,7 +80,7 @@ class Com:
 
 		pass
 
-	def Receive_msg(self, str_msg):
+	def ReceiveMsg(self, str_msg):
 
 		json_msg 			= json.loads(str_msg)
 
