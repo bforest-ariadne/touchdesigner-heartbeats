@@ -112,7 +112,7 @@ class Heartbeat:
 		alive = 0
 		for each_machine in self.Status_table.cols(0)[0][1:]:
 			received_time = math.ceil(float(self.Status_table[each_machine.val, 'received_time'].val))
-			if received_time is not None:
+			if received_time is not None and received_time != '':
 				if absTime.seconds - received_time < 5:
 					alive = 1
 			self.Status_table[each_machine.val, 'alive'] = alive
