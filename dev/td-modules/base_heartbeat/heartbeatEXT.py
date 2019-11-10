@@ -26,12 +26,12 @@ class Heartbeat:
 		self.Perform_chop 		= op('perform1')
 
 		self.Status_headers 	= ["hostname", 'alive', "ip_address", "fps", "perform_mode", 'uptime', 'received_time', 'project_name']
-		self.Status_setup()
+		self.StatusSetup()
 
 		print("Heartbeat init")
 		pass
 
-	def Status_setup(self):
+	def StatusSetup(self):
 		# clear table
 		self.Status_table.clear()
 		
@@ -43,7 +43,7 @@ class Heartbeat:
 			self.Status_table.appendRow([each_machine])
 		pass
 
-	def Role_setup(self, role_par):
+	def RoleSetup(self, role_par):
 		if role_par == "node":
 			op('lfo1').bypass = True
 			pass
@@ -52,13 +52,13 @@ class Heartbeat:
 			pass
 		pass
 
-	def Request_hb(self):
+	def RequestHb(self):
 		Controller 			= 1 if self.HeartbeatRole.eval() == 'controller' else 0
 
 		if Controller:
 
 			msg = {
-				'messagekind'	: "Send_hb",
+				'messagekind'	: "SendHb",
 				'target'		: "all",
 				'sender'		: self.HeartbeatRole.eval(),
 				'output'		: None,
@@ -73,9 +73,9 @@ class Heartbeat:
 			pass
 		pass
 	
-	def Send_hb(self, msg):
+	def SendHb(self, msg):
 		out_msg = {
-			'messagekind'	: "Hb_response",
+			'messagekind'	: "HbResponse",
 			'target'		: msg.get("sender"),
 			'sender'		: self.HeartbeatRole.eval(),
 			'output'		: None,
@@ -94,7 +94,7 @@ class Heartbeat:
 
 		pass
 
-	def Hb_response(self, msg):
+	def HbResponse(self, msg):
 		Controller 			= 1 if self.HeartbeatRole.eval() == 'controller' else 0
 		received_vals 		= msg.get("value")
 		received_vals.update({'received_time': int(absTime.seconds)})

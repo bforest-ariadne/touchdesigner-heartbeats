@@ -26,10 +26,10 @@ class Job(ComClass):
 		print("Job Class init")
 		pass
 
-	def Send_hb(self, msg):
-		op.Heartbeat.Send_hb(msg)
+	def SendHb(self, msg):
+		op.Heartbeat.SendHb(msg)
 		pass
 	
-	def Hb_response(self, msg):
-		op.Heartbeat.Hb_response(msg)
+	def HbResponse(self, msg):
+		op.Heartbeat.HbResponse(msg)
 		pass
